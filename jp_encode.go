@@ -9,7 +9,7 @@ import (
 	"golang.org/x/text/transform"
 )
 
-// UTF-8 -> ShiftJIS
+// UTF-8 - ShiftJIS
 func utf8_to_sjis(str string) (string, error) {
 	iostr := strings.NewReader(str)
 	rio := transform.NewReader(iostr, japanese.ShiftJIS.NewEncoder())
@@ -19,8 +19,6 @@ func utf8_to_sjis(str string) (string, error) {
 	}
 	return string(ret), err
 }
-
-// UTF-8 <- ShiftJIS
 func sjis_to_utf8(str string) (string, error) {
 	ret, err := ioutil.ReadAll(transform.NewReader(strings.NewReader(str), japanese.ShiftJIS.NewDecoder()))
 	if err != nil {
@@ -29,8 +27,25 @@ func sjis_to_utf8(str string) (string, error) {
 	return string(ret), err
 }
 
+// UTF-8 - EUC-JP
+func utf8_to_eucjp(str string) (string, error) {
+	ret, err := ioutil.ReadAll(transform.NewReader(strings.NewReader(str), japanese.EUCJP.NewEncoder()))
+	if err != nil {
+		return "", err
+	}
+	return string(ret), err
+}
+func eucjp_to_utf8(str string) (string, error) {
+	ret, err := ioutil.ReadAll(transform.NewReader(strings.NewReader(str), japanese.EUCJP.NewDecoder()))
+	if err != nil {
+		return "", err
+	}
+	return string(ret), err
+}
+
 func main() {
 	str := "髙橋"
+
 	msg, err := utf8_to_sjis(str)
 	if err != nil {
 		panic(err)
@@ -38,6 +53,18 @@ func main() {
 	fmt.Println(msg)
 
 	msg, err = sjis_to_utf8(msg)
+	if err != nil {
+		panic(err)
+	}
+	fmt.Println(msg)
+
+	msg, err = utf8_to_eucjp(str)
+	if err != nil {
+		panic(err)
+	}
+	fmt.Println(msg)
+
+	msg, err = eucjp_to_utf8(msg)
 	if err != nil {
 		panic(err)
 	}
