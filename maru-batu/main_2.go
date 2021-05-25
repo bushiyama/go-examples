@@ -1,9 +1,10 @@
 package main
 
 import (
-	"flag"
+	"bufio"
 	"fmt"
 	"log"
+	"os"
 	"strings"
 )
 
@@ -12,16 +13,21 @@ const (
 	x = "x"
 )
 
-var flagvar string
+var sc = bufio.NewScanner(os.Stdin)
 
-// 標準入力を受ける要件とずれるけど、パラメタにしちゃったほうが取り回しいいよ版
+func nextString() string {
+	sc.Scan()
+	return sc.Text()
+}
+
+// 標準入力を受けとる版
 func main() {
-	flag.StringVar(&flagvar, "p", "", "[ox]{5}")
-	flag.Parse()
+	sc.Split(bufio.ScanWords)
+	in := nextString()
 
 	retMap := make(map[string]int, 3)
 	var drawFlg bool
-	for _, v := range strings.Split(flagvar, "") {
+	for _, v := range strings.Split(in, "") {
 		if v != o && v != x {
 			log.Fatal("o x only")
 		}
