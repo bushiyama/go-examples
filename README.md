@@ -2,6 +2,14 @@
 
 よく使うパターンをメモ代わりに。  
 
+## [call-rust](./call-rust)
+
+go から rust を cgo 経由で lib として呼び出す sample
+
+## [csvutil](./csvutil)
+
+csvの扱いについて写経など。
+
 ## [jp_encode](./jp_encode)
 
 goで文字コードいじれるん？という現場での疑問から。  
@@ -14,7 +22,3 @@ goで文字コードいじれるん？という現場での疑問から。
 ## [rewright](./rewright)
 
 競プロ初級から練習で。
-
-## [csvutil](./csvutil)
-
-csvの扱いについて写経など。
