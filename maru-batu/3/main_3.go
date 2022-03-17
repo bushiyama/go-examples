@@ -1,4 +1,4 @@
-package main
+package mx3
 
 import (
 	"fmt"

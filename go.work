@@ -1,0 +1,9 @@
+go 1.18
+
+use (
+	./calll-rust
+	./csvutil
+	./jp_encode
+	./maru-batu
+	./rewright
+)

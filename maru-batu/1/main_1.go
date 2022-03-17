@@ -1,4 +1,4 @@
-package main
+package mx1
 
 import (
 	"flag"

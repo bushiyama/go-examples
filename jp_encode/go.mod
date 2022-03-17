@@ -1,5 +1,5 @@
 module github.com/bushiyama/go-examples/jp_encode
 
-go 1.16
+go 1.18
 
-require golang.org/x/text v0.3.6 // indirect
+require golang.org/x/text v0.3.6
